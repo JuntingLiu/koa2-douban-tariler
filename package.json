@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "dev": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,12 @@
   },
   "homepage": "https://github.com/Twitchboy/koa2-douban-tariler#readme",
   "dependencies": {
-    "ejs": "^2.5.8",
     "koa": "^2.5.0",
+    "koa-views": "^6.1.4"
+  },
+  "devDependencies": {
+    "ejs": "^2.5.8",
+    "nodemon": "^1.17.3",
     "pug": "^2.0.3"
   }
 }
