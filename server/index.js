@@ -1,10 +1,17 @@
 const Koa = require('koa');
 const app = new Koa();
-const { normal } = require('./templates');
+// 模版引擎
+const ejs = require('ejs');
+const pug = require('pug');
+
+const { htmlTpl, ejsTpl, pugTpl } = require('./templates');
 
 app.use(async (ctx, next) => {
     ctx.type = 'text/html;charset=utf-8';
-    ctx.body = normal;
+    ctx.body = pug.render(pugTpl, {
+        you: 'Junting',
+        me: 'Liu'
+    });
 });
 
 app.listen(4455, () => {
