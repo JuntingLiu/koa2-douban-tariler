@@ -1,0 +1,27 @@
+{
+  "name": "koa2-douban-tariler",
+  "version": "1.0.0",
+  "description": "豆瓣电影预览",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server\/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twitchboy/koa2-douban-tariler.git"
+  },
+  "keywords": [
+    "movie",
+    "trailer"
+  ],
+  "author": "Junting",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Twitchboy/koa2-douban-tariler/issues"
+  },
+  "homepage": "https://github.com/Twitchboy/koa2-douban-tariler#readme",
+  "dependencies": {
+    "koa": "^2.5.0"
+  }
+}

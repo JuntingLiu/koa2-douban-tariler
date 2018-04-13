@@ -57,3 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# vscode
+.vscode
+node_modules
+
+# logs
+npm-debug.log
