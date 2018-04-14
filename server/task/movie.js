@@ -20,13 +20,13 @@ const { resolve } = require('path');
     child.on('exit', code => {
         if (invoked) return;
 
-        invoked = false;
+        invoked = true;
         let err = code === 0 ? null : new Error('exit code ' + code);
 
         console.log(err);
     });
 
-    // 监听进程退出
+    // 监听进程传过的信息
     child.on('message', data => {
         let result = data.result;
 
