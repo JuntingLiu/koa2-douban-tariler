@@ -68,7 +68,7 @@ const sleep = time => new Promise((resolve, reject) => {
     
     browser.close();
     
-    process.send({data});
+    process.send(data);
     process.exit(0);
 })();
 
