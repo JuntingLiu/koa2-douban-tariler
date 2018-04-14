@@ -23,7 +23,8 @@
   "homepage": "https://github.com/Twitchboy/koa2-douban-tariler#readme",
   "dependencies": {
     "koa": "^2.5.0",
-    "koa-views": "^6.1.4"
+    "koa-views": "^6.1.4",
+    "puppeteer": "^1.3.0"
   },
   "devDependencies": {
     "ejs": "^2.5.8",
