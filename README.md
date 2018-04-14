@@ -9,6 +9,7 @@
 3. template-engines-middleware
 4. tpl-static-page-dplayer
 5. crawler-douban-movie-puppeteer
+6. add-child-process-task-run-crawler-script
 
 ## 网站服务
 
