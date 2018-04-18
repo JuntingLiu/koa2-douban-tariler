@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/Twitchboy/koa2-douban-tariler#readme",
   "dependencies": {
+    "bcrypt": "^2.0.0",
+    "glob": "^7.1.2",
     "koa": "^2.5.0",
     "koa-views": "^6.1.4",
     "mongoose": "^5.0.15",

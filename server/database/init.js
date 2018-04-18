@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
+const glob = require('glob'); // 允许使用*匹配符号，创建规则
+const { resolve } = require('path');
 const db = 'mongodb://localhost/koa2-douban-tariler';
 mongoose.Promise = global.Promise;
+
+exports.initSchemas = () => {
+    // 同步拿到所有的schema
+    glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require);
+};
 
 exports.connect = () => {
     let maxConnectTimes = 0;
