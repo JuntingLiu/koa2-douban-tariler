@@ -41,13 +41,13 @@ const userSchema = new Schema({
 });
 
 // 账号锁定时间
-userSchema.virtual('isLocked').get(() => {
+userSchema.virtual('isLocked').get(function () {
     // 取反两次，拿到 true or false
     return !!(this.lockUntil && this.lockUntil > Date.now());
 });
 
 // 保存之前处理
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next)  {
     // 数据是否新数据
     if (this.isNew) {
         this.meta.createdAt = this.meta.updatedAt = Date.now();
@@ -59,7 +59,7 @@ userSchema.pre('save', next => {
 });
 
 // 保存之前处理
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next) {
     // 密码是否有修改
     if (!this.isModified('password')) return next();
     // 密码进行加严
@@ -79,7 +79,7 @@ userSchema.pre('save', next => {
 // 给 model 添加实例方法
 userSchema.methods = {
     // 密码比较 _password 明文提交的密码， password 加严加密的密码
-    comparePassword: (_password, password) => {
+    comparePassword: function (_password, password) {
         return new Promise((resolve, reject) => {
             bcrypt.compare(_password, password, (err, isMatch) => {
                 // 比较过程是否出错，没出错把比较的值返回

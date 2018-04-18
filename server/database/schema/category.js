@@ -25,7 +25,7 @@ const categorySchema = new Schema({
 });
 
 // 保存之前处理
-categorySchema.pre('save', next => {
+categorySchema.pre('save', function (next) {
     // 数据是否新数据
     if (this.isNew) {
         this.meta.createdAt = this.meta.updatedAt = Date.now();

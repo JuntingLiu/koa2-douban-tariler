@@ -1,5 +1,7 @@
- const cp = require('child_process'); // 子进程
+const cp = require('child_process'); // 子进程
 const { resolve } = require('path');
+const mongoose = require('mongoose');
+const Movie = mongoose.model('Movie');
 
 ;(async () => {
     // 提取脚本
@@ -30,6 +32,17 @@ const { resolve } = require('path');
     child.on('message', data => {
         let result = data.result;
 
-        console.log(result);
+        // 数据入库
+        result.forEach(async item => {
+            // 校验数据是否存储过
+            let movie = await Movie.findOne({
+                doubanId: item.doubanId
+            });
+
+            if (!movie) {
+                movie = new Movie(item);
+                await movie.save();
+            }
+        });
     });
 })();
