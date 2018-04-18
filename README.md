@@ -15,19 +15,11 @@
 9. crawler-data-upload-to-qiniu
 10. event-code-example
 11. event-code-example-readme
+12. add-mongoose
 ## 网站服务
 
 对于一个网站的服务，可用性、稳定性，提供的服务要稳定； Node.js 天生单线程，如果我们只在一个线程里跑很重的服务，很容易挂了；比如启一个内置浏览器，跑脚本，就很容易挂了，所以我们会在一个网站的主进程里跑起若干个子进程，来干脏活累活；子进程挂了，主进程还健在。
 
-
-## 免密登录Linux
-
-将SSH公钥上传到Linux服务器,
-
-```
-# ~/.ssh/authorized_keys 目录下添加你客户端的ssh key
-$ ssh-copy-id username@remote-server
-```
 ## MongoDB 安装
 
 [官方文档](https://docs.mongodb.com)
@@ -139,3 +131,35 @@ $ brew info mongodb
 # 启动
 $ brew service mongod start
 ```
+
+## MongoDB 概念
+
+三个概念，需要分清；从字面意思跟关系型数据库的库表有所不同，但本质上海市一样的，数据结构不一样
+### document 文档
+
+相当于关系数据库的一条记录
+
+### collection 集合
+
+多条记录、多个文档，相当于关系型数据库的表
+### database
+
+多个集合，在逻辑上有所联系，相当于关系型数据库的数据库了
+## Mongoose 概念
+
+也有三个概念，在MongoDB驱动的基础上，继续抽象、封装的对象模型工具；能让我们在代码层面和数据层面更容易使用、门槛比较低。
+
+### schema
+
+看作Mongose 里面的一种 数据模式、数据定义，表的结构、表的字段（字段类型、字段长度； 对表具体的定义； 对应 MongoDB 的 某个collection； 存定义不具备操作数据的能力
+### model
+
+数据库的相关操作，他是由 schema 发布生成对应的模型，具有一些抽象属性、行为一个数据库的操作对，具有操作某张表操作能力的函数集合，函数集合的操作对象就是整个collection（整张表），可以进行 CRUD 相关操作
+###  entity
+
+entity 就是 model 所创建的数据实体，他的操作也会影响到数据库；简单来讲就是某条数据，这条数据的自身不是干巴巴的数据，还集成了一些方法，改变自身。
+
+### 总结MongoDB 和 Mongoose
+
+* MongoDB 的 document、collection、database 可以对应到 关系型数据库的 row（行数）、tabel（表）、db（数据库）
+* Mongoose 是对 MongoDB 的抽象和封装，针对数据本身还扩展些能力的函数集合；schema、model、entity 对应到 数据定义、数据的操作模型、针对到某条拥有自我修改的数据
