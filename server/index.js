@@ -10,10 +10,14 @@ const { initSchemas, connect } = require('./database/init'); // 数据库连接
     
     initSchemas();
 
-    const Movie = mongoose.model('Movie');
-    const movies = await Movie.find({});
+    // 检验数据库
+    // const Movie = mongoose.model('Movie');
+    // const movies = await Movie.find({});
+    // console.log(movies);
 
-    console.log(movies);
+    // 爬取数据
+    // require('./task/movie');
+    require('./task/api');
 })();
 
 // 启用模版引擎并配置

@@ -8,10 +8,10 @@ const movieSchema = new Schema({
         type: String
     },
     // 两张 Schema 的关联关系
-    category: {
+    category: [{
         type: ObjectId,
         ref: 'Category'    // 指想模型
-    },
+    }],
     rate: Number,               // 评分
     title: String,               // 标题
     summary: String,               // 简介
@@ -43,7 +43,7 @@ const movieSchema = new Schema({
 });
 
 // 保存之前处理
-movieSchema.pre('save', next => {
+movieSchema.pre('save', function (next) {
     // 数据是否新数据
     if (this.isNew) {
         this.meta.createdAt = this.meta.updatedAt = Date.now();
