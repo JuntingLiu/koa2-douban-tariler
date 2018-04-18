@@ -131,3 +131,35 @@ $ brew info mongodb
 # 启动
 $ brew service mongod start
 ```
+
+## MongoDB 概念
+
+三个概念，需要分清；从字面意思跟关系型数据库的库表有所不同，但本质上海市一样的，数据结构不一样
+### document 文档
+
+相当于关系数据库的一条记录
+
+### collection 集合
+
+多条记录、多个文档，相当于关系型数据库的表
+### database
+
+多个集合，在逻辑上有所联系，相当于关系型数据库的数据库了
+## Mongoose 概念
+
+也有三个概念，在MongoDB驱动的基础上，继续抽象、封装的对象模型工具；能让我们在代码层面和数据层面更容易使用、门槛比较低。
+
+### schema
+
+看作Mongose 里面的一种 数据模式、数据定义，表的结构、表的字段（字段类型、字段长度； 对表具体的定义； 对应 MongoDB 的 某个collection； 存定义不具备操作数据的能力
+### model
+
+数据库的相关操作，他是由 schema 发布生成对应的模型，具有一些抽象属性、行为一个数据库的操作对，具有操作某张表操作能力的函数集合，函数集合的操作对象就是整个collection（整张表），可以进行 CRUD 相关操作
+###  entity
+
+entity 就是 model 所创建的数据实体，他的操作也会影响到数据库；简单来讲就是某条数据，这条数据的自身不是干巴巴的数据，还集成了一些方法，改变自身。
+
+### 总结MongoDB 和 Mongoose
+
+* MongoDB 的 document、collection、database 可以对应到 关系型数据库的 row（行数）、tabel（表）、db（数据库）
+* Mongoose 是对 MongoDB 的抽象和封装，针对数据本身还扩展些能力的函数集合；schema、model、entity 对应到 数据定义、数据的操作模型、针对到某条拥有自我修改的数据
