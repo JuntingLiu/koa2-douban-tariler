@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 const Mixed = Schema.Types.Mixed;   // 可以存储任何的数据类型；比较适合数据变化频繁的场景
 
 const movieSchema = new Schema({
-    doubanId: String,
+    doubanId: {
+        unique: true,
+        type: String
+    },
     rate: Number,               // 评分
     title: String,               // 标题
     summary: String,               // 简介
@@ -34,6 +37,17 @@ const movieSchema = new Schema({
     }
 });
 
+// 保存之前处理
+movieSchema.pre('save', next => {
+    // 数据是否新数据
+    if (this.isNew) {
+        this.meta.createdAt = this.meta.updatedAt = Date.now();
+    } 
+    else {
+        this.meta.updatedAt = Date.now();
+    }
+    next();
+});
 // mongoose.model(model，schema)
 // model  模型的名称
 // schema   生成发布model的schema
