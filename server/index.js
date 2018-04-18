@@ -1,11 +1,19 @@
 const Koa = require('koa');
 const app = new Koa();
+const mongoose = require('mongoose');
 const views = require('koa-views'); // 模版引擎
 const { resolve } = require('path'); // resolve 拼接路径
-const { connect } = require('./database/init'); // 数据库连接
+const { initSchemas, connect } = require('./database/init'); // 数据库连接
 
 ;(async () => {
     await connect();
+    
+    initSchemas();
+
+    const Movie = mongoose.model('Movie');
+    const movies = await Movie.find({});
+
+    console.log(movies);
 })();
 
 // 启用模版引擎并配置

@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Mixed = Schema.Types.Mixed;   // 可以存储任何的数据类型；比较适合数据变化频繁的场景
+const { ObjectId, Mixed } = Schema.Types;   // 可以存储任何的数据类型；比较适合数据变化频繁的场景
 
 const movieSchema = new Schema({
     doubanId: {
         unique: true,
         type: String
+    },
+    // 两张 Schema 的关联关系
+    category: {
+        type: ObjectId,
+        ref: 'Category'    // 指想模型
     },
     rate: Number,               // 评分
     title: String,               // 标题
