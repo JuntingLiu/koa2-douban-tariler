@@ -15,19 +15,11 @@
 9. crawler-data-upload-to-qiniu
 10. event-code-example
 11. event-code-example-readme
+12. add-mongoose
 ## 网站服务
 
 对于一个网站的服务，可用性、稳定性，提供的服务要稳定； Node.js 天生单线程，如果我们只在一个线程里跑很重的服务，很容易挂了；比如启一个内置浏览器，跑脚本，就很容易挂了，所以我们会在一个网站的主进程里跑起若干个子进程，来干脏活累活；子进程挂了，主进程还健在。
 
-
-## 免密登录Linux
-
-将SSH公钥上传到Linux服务器,
-
-```
-# ~/.ssh/authorized_keys 目录下添加你客户端的ssh key
-$ ssh-copy-id username@remote-server
-```
 ## MongoDB 安装
 
 [官方文档](https://docs.mongodb.com)
