@@ -19,3 +19,123 @@
 
 对于一个网站的服务，可用性、稳定性，提供的服务要稳定； Node.js 天生单线程，如果我们只在一个线程里跑很重的服务，很容易挂了；比如启一个内置浏览器，跑脚本，就很容易挂了，所以我们会在一个网站的主进程里跑起若干个子进程，来干脏活累活；子进程挂了，主进程还健在。
 
+
+## 免密登录Linux
+
+将SSH公钥上传到Linux服务器,
+
+```
+# ~/.ssh/authorized_keys 目录下添加你客户端的ssh key
+$ ssh-copy-id username@remote-server
+```
+## MongoDB 安装
+
+[官方文档](https://docs.mongodb.com)
+### CentOS 
+
+**查看centos 版本信息**
+
+这个需要安装了 redhat-lsb (yum install -y readhat-lsb)
+```
+$ lsb_release -a
+```
+**其他查看版本号的方式**
+CentOS的版本号信息一般存放在配置文件当中，在CentOS中，与其版本相关的配置文件中都有centos关键字，该文件一般存放在/etc/目录下，所以说我们可以直接在该文件夹下搜索相关的文件。
+
+```
+[root@VM_0_2_centos ~]# ll /etc/**centos**
+-rw-r--r-- 1 root root 38 8月  30 2017 /etc/centos-release
+-rw-r--r-- 1 root root 51 8月  30 2017 /etc/centos-release-upstream
+[root@VM_0_2_centos ~]# cat /etc/centos-release
+CentOS Linux release 7.4.1708 (Core)
+```
+
+**配置MongoDB安装源**
+
+按以下路径创建一个 `/etc/yum.repos.d/mongodb-org-3.6.repo `文件，以便可以使用yum直接安装MongoDB。
+
+```
+$ vim /etc/yum.repos.d/mongodb-org-3.4.repo
+```
+使用以下配置存储文件：
+
+```
+[mongodb-org-3.4]
+name=MongoDB 3.4 Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+gpgcheck=0
+enabled=1
+
+# 最新版本是 `3.6` ，比`3.4`版本多了一个 `gpgkey` 验证
+```
+这里还需要更改下`mongodb`的下载源，更换国内阿里源
+
+```
+baseurl=http://mirrors.aliyun.com/mongodb/yum/redhat/7/mongodb-org/3.4/x86_64/
+```
+
+**安装MongoDB软件包**
+
+```
+$ sudo yum install -y mongodb-org
+```
+
+**启动MongoDB**
+
+```
+# 启动
+$ sudo service mongod start
+# 停止
+$ sudo service mongod stop
+# 重启
+$ sudo service mongod restart
+
+# 确认MongoDB是否已成功启动 通过验查mongodb的日志
+$ cat /var/log/mongodb/mongod.log
+# 确保MongoDB在启动系统后启动：
+$ sudo chkconfig mongod on
+```
+**连接MongoDb**
+
+```
+$ mongo --host 127.0.0.1:27017
+```
+
+**卸载 MongoDB**
+
+```
+# 停止MongoDB 服务
+$ sudo service mongod stop
+# 删除包
+$ sudo yum erase $(rpm -qa | grep mongodb-org)
+# 删除MongoDB数据库和日志文件
+$ sudo rm -r /var/log/mongodb
+$ sudo rm -r /var/lib/mongo
+```
+
+### macOS
+
+macOS 就很简单了，使用`HomeBrew`进行安装就好
+
+**安装HomeBrew**
+
+[官方文档](https://brew.sh/)
+
+```
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+**安装MongoDB**
+
+```
+# 更新brew
+$ brew update
+# 安装
+$ brew install mongodb
+# 安装最新版本（测试、开发）
+$ brew install mongodb --devel
+# 查看mongodb 相关信息
+$ brew info mongodb
+# 启动
+$ brew service mongod start
+```
