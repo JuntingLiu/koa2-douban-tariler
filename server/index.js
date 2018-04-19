@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const views = require('koa-views'); // 模版引擎
 const { resolve } = require('path'); // resolve 拼接路径
 const { initSchemas, connect } = require('./database/init'); // 数据库连接
+const router = require('./routes');
 
 ;(async () => {
     await connect();
@@ -17,8 +18,12 @@ const { initSchemas, connect } = require('./database/init'); // 数据库连接
 
     // 爬取数据
     // require('./task/movie');
-    require('./task/api');
+    // require('./task/api');
 })();
+
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 // 启用模版引擎并配置
 app.use(views(resolve(__dirname, './views'), {
