@@ -9,6 +9,24 @@ exports.initSchemas = () => {
     glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require);
 };
 
+// 初始化admin用户
+exports.initAdmin = async () => {
+    const User = mongoose.model('User')
+    let user = await User.findOne({
+      username: 'Junting'
+    })
+  
+    if (!user) {
+      const user = new User({
+        username: 'Junting',
+        email: 'koa2@imooc.com',
+        password: '123abc'
+      })
+  
+      await user.save()
+    }
+}
+
 exports.connect = () => {
     let maxConnectTimes = 0;
 

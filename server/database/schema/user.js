@@ -88,7 +88,7 @@ userSchema.methods = {
             })
         });
     },
-
+    // 登录次数限制
     incLoginAttempts: user => {
         return new Promise((resolve, reject) => {
             if (this.lockUntil && this.lockUntil < Date.now()) {
