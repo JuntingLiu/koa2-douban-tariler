@@ -66,7 +66,7 @@ userSchema.pre('save', function (next) {
     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
         if (err) return next(err);
         // 加密
-        bcrypt.hash(user.password, salt, (error, hash) => {
+        bcrypt.hash(this.password, salt, (error, hash) => {
             if (error) return next(error);
 
             this.password = hash;

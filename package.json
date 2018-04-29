@@ -4,7 +4,7 @@
   "description": "豆瓣电影预览",
   "main": "server/index.js",
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon ./start.js",
     "build": "rm -rf dist && parcel build src/index.html --no-cache -d dist --public-url /"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "glob": "^7.1.2",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.15",

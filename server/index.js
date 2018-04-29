@@ -5,7 +5,7 @@ const { resolve } = require('path'); // resolve 拼接路径
 const { connect, initSchemas, initAdmin } = require('./database/init'); // 数据库连接
 // const router = require('./routes');
 const R = require('ramda');
-const MIDDLEWARES = ['router'];
+const MIDDLEWARES = ['router', 'parcel'];
 
 
 const useMiddlewares = (app) => {
