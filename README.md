@@ -136,6 +136,8 @@ $ brew install mongodb --devel
 $ brew info mongodb
 # 启动
 $ brew service mongod start
+# 运行 mongodb
+$ mongod --dbpath <path to data directory 指定数据目录路径>
 ```
 
 ## MongoDB 概念
